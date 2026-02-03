@@ -1,7 +1,7 @@
-type status = "available" | "occupied" | "selected";
-type seat = { seat: string; status: status };
-
-export const seatData: { id: number; row: string; seats: seat[] }[] = [
+export type status = "available" | "occupied" | "selected";
+export type seat = { seat: string; status: status };
+export type TheaterRowType = {id: number; row: string; seats: seat[] }
+export const seatData: TheaterRowType[] = [
   {
     id: 1,
     row: "A",
@@ -23,8 +23,8 @@ export const seatData: { id: number; row: string; seats: seat[] }[] = [
       { seat: "B1", status: "available" },
       { seat: "B2", status: "available" },
       { seat: "B3", status: "available" },
-      { seat: "B4", status: "available" },
-      { seat: "B5", status: "available" },
+      { seat: "B4", status: "occupied" },
+      { seat: "B5", status: "occupied" },
       { seat: "B6", status: "available" },
       { seat: "B7", status: "available" },
       { seat: "B8", status: "available" },
@@ -40,8 +40,8 @@ export const seatData: { id: number; row: string; seats: seat[] }[] = [
       { seat: "C4", status: "available" },
       { seat: "C5", status: "available" },
       { seat: "C6", status: "available" },
-      { seat: "C7", status: "available" },
-      { seat: "C8", status: "available" },
+      { seat: "C7", status: "occupied" },
+      { seat: "C8", status: "occupied" },
     ],
   },
   {
@@ -65,8 +65,8 @@ export const seatData: { id: number; row: string; seats: seat[] }[] = [
       { seat: "E1", status: "available" },
       { seat: "E2", status: "available" },
       { seat: "E3", status: "available" },
-      { seat: "E4", status: "available" },
-      { seat: "E5", status: "available" },
+      { seat: "E4", status: "occupied" },
+      { seat: "E5", status: "occupied" },
       { seat: "E6", status: "available" },
       { seat: "E7", status: "available" },
       { seat: "E8", status: "available" },
@@ -81,9 +81,9 @@ export const seatData: { id: number; row: string; seats: seat[] }[] = [
       { seat: "F2", status: "available" },
       { seat: "F3", status: "available" },
       { seat: "F4", status: "available" },
-      { seat: "F5", status: "available" },
-      { seat: "F6", status: "available" },
-      { seat: "F7", status: "available" },
+      { seat: "F5", status: "occupied" },
+      { seat: "F6", status: "occupied" },
+      { seat: "F7", status: "occupied" },
       { seat: "F8", status: "available" },
     ],
   },
