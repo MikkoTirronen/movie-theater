@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Movie } from "../models/movie";
 import { MovieContext } from "./useMovieContext";
 import { seatData, type seat } from "../data/theaterStatus";
@@ -17,6 +17,11 @@ export function MovieContextProvider({
   const [theaterStatus, setTheaterStatus] = useState(seatData);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const [price, setPrice] = useState<string>(movies[0].price);
+
+  useEffect(() => {
+    setPrice(movies[0].price);
+  },[movies])
+
   const updateSeat = (seat: string): void => {
     setTheaterStatus((prev) => {
       const rowIndex = prev.findIndex((rowItem) => rowItem.row === seat[0]);
