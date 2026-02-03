@@ -1,16 +1,16 @@
 import { useMovieContext } from "../context/useMovieContext";
 
 export default function MovieSelect() {
-  const { movies, setPrice,  } = useMovieContext();
+  const { movies, setPrice } = useMovieContext();
 
   return (
-    <>
+    <div className="movie-container">
       <label htmlFor="movie">Pick a movie:</label>
       <select
         name="movie"
         id="movie"
         onChange={(e) => {
-          setPrice(e.target.value)
+          setPrice(e.target.value);
         }}
       >
         {movies.map((movie) => {
@@ -22,6 +22,6 @@ export default function MovieSelect() {
           );
         })}
       </select>
-    </>
+    </div>
   );
 }

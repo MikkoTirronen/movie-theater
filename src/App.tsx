@@ -6,9 +6,8 @@ import TotalPrice from "./components/TotalPrice";
 function App() {
   return (
     <>
-      <div className="movie-container">
+      
       <MovieSelect />
-      </div>
       <Theater />
       <TotalPrice/>
     </>
