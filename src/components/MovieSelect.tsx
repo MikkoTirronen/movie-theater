@@ -1,7 +1,7 @@
 import { useMovieContext } from "../context/useMovieContext";
 
 export default function MovieSelect() {
-  const { movies, setPrice } = useMovieContext();
+  const { movies, setCurrentMovie } = useMovieContext();
 
   return (
     <div className="movie-container">
@@ -10,14 +10,14 @@ export default function MovieSelect() {
         name="movie"
         id="movie"
         onChange={(e) => {
-          setPrice(e.target.value);
+          setCurrentMovie(movies[parseInt(e.target.value)]);
         }}
       >
-        {movies.map((movie) => {
+        {movies.map((movie, index) => {
           return (
             <option
               key={"movie" + movie.id}
-              value={movie.price}
+              value={index}
             >{`${movie.title} (${movie.price} kr)`}</option>
           );
         })}

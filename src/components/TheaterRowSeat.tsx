@@ -10,7 +10,6 @@ export default function TheaterRowSeat({ seatStatus }: TheaterRowSeatProps) {
       className={`seat ${seatStatus.status === "occupied" && "occupied"} ${seatStatus.status === "selected" && "selected"}`}
       onClick={() => {
         selectSeat(seatStatus);
-        console.log(seatStatus.seat);
       }}
     ></div>
   );

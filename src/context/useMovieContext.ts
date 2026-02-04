@@ -6,8 +6,8 @@ import type { seat, TheaterRowType } from "../data/theaterStatus";
 export const MovieContext = createContext<{
   movies: Movie[];
   setMovies: React.Dispatch<React.SetStateAction<Movie[]>>;
-  price: string;
-  setPrice: React.Dispatch<React.SetStateAction<string>>;
+  currentMovie: Movie;
+  setCurrentMovie: React.Dispatch<React.SetStateAction<Movie>>;
   theaterStatus: TheaterRowType[];
   setTheaterStatus: React.Dispatch<React.SetStateAction<TheaterRowType[]>>;
   selectSeat: (seat: seat) => void;
@@ -15,8 +15,8 @@ export const MovieContext = createContext<{
 }>({
   movies: [],
   setMovies: () => {},
-  price: "0",
-  setPrice: () => {},
+  currentMovie: new Movie("0", "None", "0", []),
+  setCurrentMovie: () => {},
   theaterStatus: [],
   setTheaterStatus: () => {},
   selectSeat: () => {},

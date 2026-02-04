@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Movie } from "../models/movie";
 import { MovieContext } from "./useMovieContext";
 import { seatData, type seat } from "../data/theaterStatus";
@@ -9,18 +9,28 @@ export function MovieContextProvider({
   children: React.ReactNode;
 }) {
   const [movies, setMovies] = useState([
-    new Movie("1", "Fast and furious 6", "100", []),
+    new Movie("1", "Fast and furious 6", "100", [
+      "B4",
+      "B5",
+      "C7",
+      "C8",
+      "E4",
+      "E5",
+      "F5",
+      "F6",
+      "F7",
+    ]),
     new Movie("2", "The mummy returns", "50", []),
     new Movie("3", "Jumanji: Welcome to the Jungle", "70", []),
     new Movie("4", "Rampage", "40", []),
   ]);
   const [theaterStatus, setTheaterStatus] = useState(seatData);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
-  const [price, setPrice] = useState<string>(movies[0].price);
+  const [currentMovie, setCurrentMovie] = useState<Movie>(movies[0]);
 
   useEffect(() => {
-    setPrice(movies[0].price);
-  },[movies])
+    setCurrentMovie(movies[0]);
+  }, [movies]);
 
   const updateSeat = (seat: string): void => {
     setTheaterStatus((prev) => {
@@ -58,14 +68,16 @@ export function MovieContextProvider({
       setSelectedSeats((prev) => [...prev, selectedSeat.seat]);
     }
   };
+  // const updateTheater = () => {
 
+  // }
   return (
     <MovieContext.Provider
       value={{
         movies,
         setMovies,
-        price,
-        setPrice,
+        currentMovie,
+        setCurrentMovie,
         theaterStatus,
         setTheaterStatus,
         selectedSeats,
