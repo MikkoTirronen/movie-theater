@@ -12,6 +12,7 @@ export const MovieContext = createContext<{
   setTheaterStatus: React.Dispatch<React.SetStateAction<TheaterRowType[]>>;
   selectSeat: (seat: seat) => void;
   selectedSeats: string[];
+  setSelectedSeats: React.Dispatch<React.SetStateAction<string[]>>;
 }>({
   movies: [],
   setMovies: () => {},
@@ -21,6 +22,7 @@ export const MovieContext = createContext<{
   setTheaterStatus: () => {},
   selectSeat: () => {},
   selectedSeats: [],
+  setSelectedSeats: () => {},
 });
 
 export const useMovieContext = () => {

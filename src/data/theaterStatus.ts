@@ -1,4 +1,4 @@
-export type status = "available" | "occupied" | "selected";
+export type status = "available" | "occupied";
 export type seat = { seat: string; status: status };
 export type TheaterRowType = { id: number; row: string; seats: seat[] };
 export const seatData: TheaterRowType[] = [

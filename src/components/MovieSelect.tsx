@@ -1,7 +1,7 @@
 import { useMovieContext } from "../context/useMovieContext";
 
 export default function MovieSelect() {
-  const { movies, setCurrentMovie } = useMovieContext();
+  const { movies, setCurrentMovie, setSelectedSeats } = useMovieContext();
 
   return (
     <div className="movie-container">
@@ -10,6 +10,7 @@ export default function MovieSelect() {
         name="movie"
         id="movie"
         onChange={(e) => {
+          setSelectedSeats([]);
           setCurrentMovie(movies[parseInt(e.target.value)]);
         }}
       >

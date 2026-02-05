@@ -29,7 +29,7 @@ export function MovieContextProvider({
   const [currentMovie, setCurrentMovie] = useState<Movie>(movies[0]);
 
   const loadOccupiedSeats = (movie: Movie): void => {
-    setTheaterStatus(seatData)
+    setTheaterStatus(seatData);
     movie.bookedSeats.forEach((bookedSeat) => {
       setTheaterStatus((prev) => {
         const rowIndex = prev.findIndex(
@@ -56,43 +56,40 @@ export function MovieContextProvider({
   useEffect(() => {
     setCurrentMovie(movies[0]);
   }, [movies]);
+
   useEffect(() => {
-    loadOccupiedSeats(currentMovie)
-  },[currentMovie])
+    setSelectedSeats([]);
+    loadOccupiedSeats(currentMovie);
+  }, [currentMovie]);
 
-  const updateSeat = (seat: string): void => {
-    setTheaterStatus((prev) => {
-      const rowIndex = prev.findIndex((rowItem) => rowItem.row === seat[0]);
-      const prevRow = prev[rowIndex];
-      const seatIndex = prevRow.seats.findIndex(
-        (seatItem) => seatItem.seat === seat,
-      );
+  // const updateSeat = (seat: string): void => {
+  //   setTheaterStatus((prev) => {
+  //     const rowIndex = prev.findIndex((rowItem) => rowItem.row === seat[0]);
+  //     const prevRow = prev[rowIndex];
+  //     const seatIndex = prevRow.seats.findIndex(
+  //       (seatItem) => seatItem.seat === seat,
+  //     );
 
-      const updatedSeats: seat[] = [...prevRow.seats];
-      updatedSeats[seatIndex] = {
-        ...updatedSeats[seatIndex],
-        status:
-          updatedSeats[seatIndex].status === "selected"
-            ? "available"
-            : "selected",
-      };
+  //     const updatedSeats: seat[] = [...prevRow.seats];
+  //     updatedSeats[seatIndex] = {
+  //       ...updatedSeats[seatIndex],
+  //       status:
+  //         updatedSeats[seatIndex].status === "selected"
+  //           ? "available"
+  //           : "selected",
+  //     };
 
-      const updatedRow = { ...prevRow, seats: updatedSeats };
-      const updatedTheater = [...prev];
-      updatedTheater[rowIndex] = updatedRow;
-      return updatedTheater;
-    });
-  };
+  //     const updatedRow = { ...prevRow, seats: updatedSeats };
+  //     const updatedTheater = [...prev];
+  //     updatedTheater[rowIndex] = updatedRow;
+  //     return updatedTheater;
+  //   });
+  // };
   const selectSeat = (selectedSeat: seat): void => {
-    if (
-      selectedSeats.includes(selectedSeat.seat) &&
-      selectedSeat.status === "selected"
-    ) {
-      updateSeat(selectedSeat.seat);
+    if (selectedSeats.includes(selectedSeat.seat)) {
       const update = selectedSeats.filter((item) => item !== selectedSeat.seat);
       setSelectedSeats(update);
     } else if (selectedSeat.status === "available") {
-      updateSeat(selectedSeat.seat);
       setSelectedSeats((prev) => [...prev, selectedSeat.seat]);
     }
   };
@@ -108,6 +105,7 @@ export function MovieContextProvider({
         setTheaterStatus,
         selectedSeats,
         selectSeat,
+        setSelectedSeats
       }}
     >
       {children}
