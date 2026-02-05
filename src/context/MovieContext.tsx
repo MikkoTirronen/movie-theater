@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Movie } from "../models/movie";
 import { MovieContext } from "./useMovieContext";
 import { seatData, type seat } from "../data/theaterStatus";
@@ -9,47 +9,87 @@ export function MovieContextProvider({
   children: React.ReactNode;
 }) {
   const [movies, setMovies] = useState([
-    new Movie("1", "Fast and furious 6", "100", []),
+    new Movie("1", "Fast and furious 6", "100", [
+      "B4",
+      "B5",
+      "C7",
+      "C8",
+      "E4",
+      "E5",
+      "F5",
+      "F6",
+      "F7",
+    ]),
     new Movie("2", "The mummy returns", "50", []),
     new Movie("3", "Jumanji: Welcome to the Jungle", "70", []),
     new Movie("4", "Rampage", "40", []),
   ]);
   const [theaterStatus, setTheaterStatus] = useState(seatData);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
-  const [price, setPrice] = useState<string>(movies[0].price);
-  const updateSeat = (seat: string): void => {
-    setTheaterStatus((prev) => {
-      const rowIndex = prev.findIndex((rowItem) => rowItem.row === seat[0]);
-      const prevRow = prev[rowIndex];
-      const seatIndex = prevRow.seats.findIndex(
-        (seatItem) => seatItem.seat === seat,
-      );
+  const [currentMovie, setCurrentMovie] = useState<Movie>(movies[0]);
 
-      const updatedSeats = [...prevRow.seats];
-      updatedSeats[seatIndex] = {
-        ...updatedSeats[seatIndex],
-        status:
-          updatedSeats[seatIndex].status === "selected"
-            ? "available"
-            : "selected",
-      };
+  const loadOccupiedSeats = (movie: Movie): void => {
+    setTheaterStatus(seatData);
+    movie.bookedSeats.forEach((bookedSeat) => {
+      setTheaterStatus((prev) => {
+        const rowIndex = prev.findIndex(
+          (rowObject) => rowObject.row === bookedSeat[0],
+        );
+        const prevRow = prev[rowIndex];
+        const seatIndex = prevRow.seats.findIndex(
+          (seatObject) => seatObject.seat === bookedSeat,
+        );
+        const updatedSeats: seat[] = [...prevRow.seats];
 
-      const updatedRow = { ...prevRow, seats: updatedSeats };
-      const updatedTheater = [...prev];
-      updatedTheater[rowIndex] = updatedRow;
-      return updatedTheater;
+        updatedSeats[seatIndex] = {
+          ...updatedSeats[seatIndex],
+          status: "occupied",
+        };
+        const updatedRow = { ...prevRow, seats: updatedSeats };
+        const updatedTheater = [...prev];
+        updatedTheater[rowIndex] = updatedRow;
+        return updatedTheater;
+      });
     });
   };
+
+  useEffect(() => {
+    setCurrentMovie(movies[0]);
+  }, [movies]);
+
+  useEffect(() => {
+    setSelectedSeats([]);
+    loadOccupiedSeats(currentMovie);
+  }, [currentMovie]);
+
+  // const updateSeat = (seat: string): void => {
+  //   setTheaterStatus((prev) => {
+  //     const rowIndex = prev.findIndex((rowItem) => rowItem.row === seat[0]);
+  //     const prevRow = prev[rowIndex];
+  //     const seatIndex = prevRow.seats.findIndex(
+  //       (seatItem) => seatItem.seat === seat,
+  //     );
+
+  //     const updatedSeats: seat[] = [...prevRow.seats];
+  //     updatedSeats[seatIndex] = {
+  //       ...updatedSeats[seatIndex],
+  //       status:
+  //         updatedSeats[seatIndex].status === "selected"
+  //           ? "available"
+  //           : "selected",
+  //     };
+
+  //     const updatedRow = { ...prevRow, seats: updatedSeats };
+  //     const updatedTheater = [...prev];
+  //     updatedTheater[rowIndex] = updatedRow;
+  //     return updatedTheater;
+  //   });
+  // };
   const selectSeat = (selectedSeat: seat): void => {
-    if (
-      selectedSeats.includes(selectedSeat.seat) &&
-      selectedSeat.status === "selected"
-    ) {
-      updateSeat(selectedSeat.seat);
+    if (selectedSeats.includes(selectedSeat.seat)) {
       const update = selectedSeats.filter((item) => item !== selectedSeat.seat);
       setSelectedSeats(update);
     } else if (selectedSeat.status === "available") {
-      updateSeat(selectedSeat.seat);
       setSelectedSeats((prev) => [...prev, selectedSeat.seat]);
     }
   };
@@ -59,12 +99,13 @@ export function MovieContextProvider({
       value={{
         movies,
         setMovies,
-        price,
-        setPrice,
+        currentMovie,
+        setCurrentMovie,
         theaterStatus,
         setTheaterStatus,
         selectedSeats,
         selectSeat,
+        setSelectedSeats
       }}
     >
       {children}

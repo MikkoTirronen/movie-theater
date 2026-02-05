@@ -15,23 +15,7 @@
         "Alec Guinness"
       ],
       "price": 150,
-      "bookedSeats": [
-        "A1",
-        "B4",
-        "B5",
-        "C7",
-        "C8",
-        "E4",
-        "E5",
-        "F5",
-        "F6",
-        "F7",
-        "A8",
-        "A7",
-        "A2",
-        "A4",
-        "A3"
-      ]
+      "bookedSeats": ["B4", "B5", "C7", "C8", "E4", "E5", "F5", "F6", "F7"]
     },
     {
       "id": "6",
@@ -43,23 +27,7 @@
       "directors": ["Frank Darabont"],
       "cast": ["Tim Robbins", "Morgan Freeman", "Bob Gunton", "William Sadler"],
       "price": 80,
-      "bookedSeats": [
-        "A1",
-        "B4",
-        "B5",
-        "C7",
-        "C8",
-        "E4",
-        "E5",
-        "F5",
-        "F6",
-        "F7",
-        "A8",
-        "A7",
-        "A2",
-        "A4",
-        "A3"
-      ]
+      "bookedSeats": ["B4", "B5", "C7", "C8", "E4", "E5", "F5", "F6", "F7"]
     },
     {
       "id": "7",
@@ -76,23 +44,7 @@
         "Kevin McKidd"
       ],
       "price": 75,
-      "bookedSeats": [
-        "A1",
-        "B4",
-        "B5",
-        "C7",
-        "C8",
-        "E4",
-        "E5",
-        "F5",
-        "F6",
-        "F7",
-        "A8",
-        "A7",
-        "A2",
-        "A4",
-        "A3"
-      ]
+      "bookedSeats": ["B4", "B5", "C7", "C8", "E4", "E5", "F5", "F6", "F7"]
     },
     {
       "id": "8",
@@ -109,23 +61,7 @@
         "Stephen Baldwin"
       ],
       "price": 90,
-      "bookedSeats": [
-        "A1",
-        "B4",
-        "B5",
-        "C7",
-        "C8",
-        "E4",
-        "E5",
-        "F5",
-        "F6",
-        "F7",
-        "A8",
-        "A7",
-        "A2",
-        "A4",
-        "A3"
-      ]
+      "bookedSeats": ["B4", "B5", "C7", "C8", "E4", "E5", "F5", "F6", "F7"]
     },
     {
       "id": "9",
@@ -137,23 +73,7 @@
       "directors": ["Nick Park"],
       "cast": ["Peter Sallis", "Peter Hawkins", "", ""],
       "price": 120,
-      "bookedSeats": [
-        "A1",
-        "B4",
-        "B5",
-        "C7",
-        "C8",
-        "E4",
-        "E5",
-        "F5",
-        "F6",
-        "F7",
-        "A8",
-        "A7",
-        "A2",
-        "A4",
-        "A3"
-      ]
+      "bookedSeats": ["B4", "B5", "C7", "C8", "E4", "E5", "F5", "F6", "F7"]
     },
     {
       "id": "10",
@@ -165,23 +85,7 @@
       "directors": ["Nick Park"],
       "cast": ["Peter Sallis", "Anne Reid", "Justin Fletcher", "Peter Hawkins"],
       "price": 101,
-      "bookedSeats": [
-        "A1",
-        "B4",
-        "B5",
-        "C7",
-        "C8",
-        "E4",
-        "E5",
-        "F5",
-        "F6",
-        "F7",
-        "A8",
-        "A7",
-        "A2",
-        "A4",
-        "A3"
-      ]
+      "bookedSeats": ["B4", "B5", "C7", "C8", "E4", "E5", "F5", "F6", "F7"]
     },
     {
       "id": "11",
@@ -198,23 +102,7 @@
         "LeVar Burton"
       ],
       "price": 140,
-      "bookedSeats": [
-        "A1",
-        "B4",
-        "B5",
-        "C7",
-        "C8",
-        "E4",
-        "E5",
-        "F5",
-        "F6",
-        "F7",
-        "A8",
-        "A7",
-        "A2",
-        "A4",
-        "A3"
-      ]
+      "bookedSeats": ["B4", "B5", "C7", "C8", "E4", "E5", "F5", "F6", "F7"]
     },
     {
       "id": "12",

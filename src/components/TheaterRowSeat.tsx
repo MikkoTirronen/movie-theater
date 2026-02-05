@@ -4,13 +4,12 @@ type TheaterRowSeatProps = {
   seatStatus: seat;
 };
 export default function TheaterRowSeat({ seatStatus }: TheaterRowSeatProps) {
-  const { selectSeat } = useMovieContext();
+  const { selectSeat,selectedSeats } = useMovieContext();
   return (
     <div
-      className={`seat ${seatStatus.status === "occupied" && "occupied"} ${seatStatus.status === "selected" && "selected"}`}
+      className={`seat ${seatStatus.status === "occupied" && "occupied"} ${selectedSeats.includes(seatStatus.seat) && "selected"}`}
       onClick={() => {
         selectSeat(seatStatus);
-        console.log(seatStatus.seat);
       }}
     ></div>
   );
