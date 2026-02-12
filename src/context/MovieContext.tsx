@@ -35,7 +35,7 @@ export function MovieContextProvider({
     ...row,
     seats: row.seats.map((seat) => ({
       ...seat,
-      status: currentMovie.bookedSeats.includes(seat.seat)
+      status: currentMovie.bookedSeats?.includes(seat.seat)
         ? "occupied" as const
         : "available" as const,
     })),

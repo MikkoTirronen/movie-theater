@@ -1,14 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import MovieSelect from "./components/MovieSelect";
 import Theater from "./components/Theater";
 import TotalPrice from "./components/TotalPrice";
 import { useMovieContext } from "./context/useMovieContext";
 import BookingForm from "./components/BookingForm";
+import AdminPanel from "./components/AdminPanel";
 
 function App() {
   const { setMovies } = useMovieContext();
-
+  const [adminToggle, setAdminToggle] = useState<boolean>(false);
+  const handleClick = () => {
+    setAdminToggle(!adminToggle);
+  };
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -24,10 +28,21 @@ function App() {
 
   return (
     <>
-      <MovieSelect />
-      <Theater />
-      <TotalPrice />
-      <BookingForm/>
+      <nav className="navbar">
+        <button onClick={handleClick}>{adminToggle ? "Hide Admin" : "Show Admin"}</button>
+      </nav>
+      <h1>Movie Theater Booking</h1>
+      {!adminToggle && (
+        <>
+          <MovieSelect />
+          <Theater />
+          <TotalPrice />
+          <BookingForm />
+        </>
+      )}
+      {adminToggle && (
+        <AdminPanel />
+      )}
     </>
   );
 }
