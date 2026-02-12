@@ -49,10 +49,15 @@ function App() {
           >
             {!bookToggle ? "Book now" : "Hide form"}
           </button>
-          {bookToggle&&<BookingForm />}
+          {bookToggle && <BookingForm />}
         </>
       )}
       {adminToggle && <AdminPanel />}
+      <p className="note">
+        *Note: The app includes an offline fallback. If json-server is
+        unavailable, failed requests update the client state locally to simulate
+        normal server behavior.
+      </p>
     </>
   );
 }
