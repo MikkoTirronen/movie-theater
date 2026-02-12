@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo} from "react";
 import { Movie } from "../models/movie";
 import { MovieContext } from "./useMovieContext";
 import { seatData, type seat } from "../data/theaterStatus";
@@ -27,20 +27,20 @@ export function MovieContextProvider({
 
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const [currentMovie, setCurrentMovie] = useState<Movie>(movies[0]);
-
+  
   const theaterStatus = useMemo(() => {
-  if (!currentMovie) return seatData;
+    if (!currentMovie) return seatData;
 
-  return seatData.map((row) => ({
-    ...row,
-    seats: row.seats.map((seat) => ({
-      ...seat,
-      status: currentMovie.bookedSeats?.includes(seat.seat)
-        ? "occupied" as const
-        : "available" as const,
-    })),
-  }));
-}, [currentMovie]);
+    return seatData.map((row) => ({
+      ...row,
+      seats: row.seats.map((seat) => ({
+        ...seat,
+        status: currentMovie.bookedSeats?.includes(seat.seat)
+          ? ("occupied" as const)
+          : ("available" as const),
+      })),
+    }));
+  }, [currentMovie]);
 
   const selectSeat = (selectedSeat: seat): void => {
     if (selectedSeats.includes(selectedSeat.seat)) {
