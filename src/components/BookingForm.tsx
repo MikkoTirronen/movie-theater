@@ -33,9 +33,16 @@ export default function BookingForm() {
       isValid = false;
     }
 
-    if (!phoneNumber.trim()) {
+    const phoneTrimmed = phoneNumber.trim();
+    if (!phoneTrimmed) {
       newErrors.phoneNumber = "Phone number is required";
       isValid = false;
+    } else {
+      const phoneRegex = /^[0-9+\-() ]+$/;
+      if (!phoneRegex.test(phoneTrimmed)) {
+        newErrors.phoneNumber = "Phone number is invalid";
+        isValid = false;
+      }
     }
 
     setError((prev) => ({
