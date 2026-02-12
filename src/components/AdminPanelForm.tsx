@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useMovieContext } from "../context/useMovieContext";
+import { Movie } from "../models/movie";
 
 export default function AdminPanelForm({
   editMovieId,
@@ -8,8 +9,8 @@ export default function AdminPanelForm({
   editMovieId: string | undefined;
   setEditMovieId: React.Dispatch<React.SetStateAction<string | undefined>>;
 }) {
-  const [title, setTitle] = useState<string | undefined>("");
-  const [price, setPrice] = useState<string | undefined>();
+  const [title, setTitle] = useState<string>("");
+  const [price, setPrice] = useState<string>("");
   const { movies, setMovies } = useMovieContext();
 
   useEffect(() => {
@@ -41,6 +42,10 @@ export default function AdminPanelForm({
       setMovies((prev) => [...prev, data]);
     } catch (err) {
       console.log(err);
+      setMovies((prev) => [
+        ...prev,
+        new Movie("newMove" + movies.length, title, price, []),
+      ]);
     }
   };
   const editMovie = async () => {
@@ -55,9 +60,17 @@ export default function AdminPanelForm({
       });
       if (!res.ok) throw new Error("Failed to post data");
       const data = await res.json();
-      console.log(`Movie added: ${data}`);
+      console.log(`Movie updated: ${data}`);
+      setMovies((prev) =>
+        prev.map((movie) => (movie.id === data.id ? data : movie)),
+      );
     } catch (err) {
       console.log(err);
+      setMovies((prev) =>
+        prev.map((movie) =>
+          movie.id === editMovieId ? { ...movie, title, price } : movie,
+        ),
+      );
     }
   };
   const deleteMovie = async () => {
@@ -91,14 +104,15 @@ export default function AdminPanelForm({
     setPrice("");
     setTitle("");
   };
+  const isEditing = Boolean(editMovieId);
   return (
     <form className="booking-form" onSubmit={handleOnSubmit}>
-      {editMovieId !== "" && (
+      {isEditing && (
         <button className="delete-btn" onClick={handleDelete}>
           Delete Movie
         </button>
       )}
-      <h2>{editMovieId === "" ? "Add New Movie" : "Edit Movie"}</h2>
+      <h2>{isEditing ? "Add New Movie" : "Edit Movie"}</h2>
       <div className="form-group">
         <label htmlFor="movie-title">Movie Title:</label>
         <input
