@@ -4,6 +4,7 @@ import MovieSelect from "./components/MovieSelect";
 import Theater from "./components/Theater";
 import TotalPrice from "./components/TotalPrice";
 import { useMovieContext } from "./context/useMovieContext";
+import BookingForm from "./components/BookingForm";
 
 function App() {
   const { setMovies } = useMovieContext();
@@ -26,6 +27,7 @@ function App() {
       <MovieSelect />
       <Theater />
       <TotalPrice />
+      <BookingForm/>
     </>
   );
 }
