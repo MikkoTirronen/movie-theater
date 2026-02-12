@@ -10,8 +10,13 @@ import AdminPanel from "./components/AdminPanel";
 function App() {
   const { setMovies } = useMovieContext();
   const [adminToggle, setAdminToggle] = useState<boolean>(false);
-  const handleClick = () => {
+  const [bookNow, setBookNow] = useState<boolean>(false);
+
+  const handleAdminClick = () => {
     setAdminToggle(!adminToggle);
+  };
+  const handleBookNowClick = () => {
+    setBookNow(!bookNow);
   };
   useEffect(() => {
     const fetchMovies = async () => {
@@ -29,7 +34,9 @@ function App() {
   return (
     <>
       <nav className="navbar">
-        <button onClick={handleClick}>{adminToggle ? "Hide Admin" : "Show Admin"}</button>
+        <button onClick={handleAdminClick}>
+          {adminToggle ? "Hide Admin" : "Show Admin"}
+        </button>
       </nav>
       <h1>Movie Theater Booking</h1>
       {!adminToggle && (
@@ -37,12 +44,13 @@ function App() {
           <MovieSelect />
           <Theater />
           <TotalPrice />
-          <BookingForm />
+          <button className="submit-btn btn-extended" onClick={handleBookNowClick}>
+            {!bookNow?"Book Now": "Hide Form"}
+          </button>
+          {bookNow && <BookingForm />}
         </>
       )}
-      {adminToggle && (
-        <AdminPanel />
-      )}
+      {adminToggle && <AdminPanel />}
     </>
   );
 }
