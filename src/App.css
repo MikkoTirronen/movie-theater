@@ -217,3 +217,7 @@ p.text span {
 .delete-btn:active {
   transform: scale(0.98);
 }
+.note{
+  margin: 3rem;
+  max-width: 60dvw;
+}
