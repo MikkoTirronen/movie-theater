@@ -30,7 +30,12 @@ export default function AdminPanel() {
             );
           })}
         </select>
-        <AdminPanelForm editMovieId={editMovieId} setEditMovieId={setEditMovieId}></AdminPanelForm>
+        <section className="admin-panel-form">
+          <AdminPanelForm
+            editMovieId={editMovieId}
+            setEditMovieId={setEditMovieId}
+          ></AdminPanelForm>
+        </section>
       </div>
     </>
   );

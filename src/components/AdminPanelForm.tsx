@@ -98,32 +98,35 @@ export default function AdminPanelForm({
           Delete Movie
         </button>
       )}
-      <h2>{editMovieId === "" ? "Add New Movie" : "Edit Movie"}</h2>
-      <div className="form-group">
-        <label htmlFor="movie-title">Movie Title:</label>
-        <input
-          type="text"
-          id="movie-title"
-          name="movie-title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Avatar"
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="movie-price">Movie Price (kr):</label>
-        <input
-          type="text"
-          id="movie-price"
-          name="movie-price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          placeholder="100"
-        />
-      </div>
-      <button type="submit" className="submit-btn add-margin-top">
-        Submit
-      </button>
-    </form>
+        <h2>{editMovieId === "" ? "Add New Movie" : "Edit Movie"}</h2>
+        <div className="form-group">
+          <label htmlFor="movie-title">Movie Title:</label>
+          <input
+            type="text"
+            id="movie-title"
+            name="movie-title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Avatar"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="movie-price">Movie Price (kr):</label>
+          <input
+            type="text"
+            id="movie-price"
+            name="movie-price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            placeholder="100"
+          />
+        </div>
+        <div className="form-group">
+          <button type="submit" className="submit-btn add-margin-top">
+            Submit
+          </button>
+        </div>
+      </form>
+    
   );
 }
