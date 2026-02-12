@@ -24,7 +24,7 @@ export function MovieContextProvider({
     new Movie("3", "Jumanji: Welcome to the Jungle", "70", []),
     new Movie("4", "Rampage", "40", []),
   ]);
-  // const [theaterStatus, setTheaterStatus] = useState(seatData);
+
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const [currentMovie, setCurrentMovie] = useState<Movie>(movies[0]);
 
@@ -41,14 +41,6 @@ export function MovieContextProvider({
     })),
   }));
 }, [currentMovie]);
-  // useEffect(() => {
-  //   setCurrentMovie(movies[0]);
-  // }, [movies]);
-
-  // useEffect(() => {
-  //   if(!currentMovie) return;
-  //    loadOccupiedSeats(currentMovie);
-  // }, [currentMovie]);
 
   const selectSeat = (selectedSeat: seat): void => {
     if (selectedSeats.includes(selectedSeat.seat)) {
