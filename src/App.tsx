@@ -10,6 +10,7 @@ import AdminPanel from "./components/AdminPanel";
 function App() {
   const { setMovies } = useMovieContext();
   const [adminToggle, setAdminToggle] = useState<boolean>(false);
+  const [bookToggle, setBookToggle] = useState<boolean>(false);
   const handleClick = () => {
     setAdminToggle(!adminToggle);
   };
@@ -29,20 +30,29 @@ function App() {
   return (
     <>
       <nav className="navbar">
-        <button onClick={handleClick}>{adminToggle ? "Hide Admin" : "Show Admin"}</button>
+        <button onClick={handleClick}>
+          {adminToggle ? "Hide Admin" : "Show Admin"}
+        </button>
       </nav>
       <h1>Movie Theater Booking</h1>
+
       {!adminToggle && (
         <>
           <MovieSelect />
           <Theater />
           <TotalPrice />
-          <BookingForm />
+          <button
+            className="submit-btn btn-extended"
+            onClick={() => {
+              setBookToggle(!bookToggle);
+            }}
+          >
+            {!bookToggle ? "Book now" : "Hide form"}
+          </button>
+          {bookToggle&&<BookingForm />}
         </>
       )}
-      {adminToggle && (
-        <AdminPanel />
-      )}
+      {adminToggle && <AdminPanel />}
     </>
   );
 }
