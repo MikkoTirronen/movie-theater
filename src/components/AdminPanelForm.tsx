@@ -112,7 +112,7 @@ export default function AdminPanelForm({
           Delete Movie
         </button>
       )}
-      <h2>{isEditing ? "Add New Movie" : "Edit Movie"}</h2>
+      <h2>{!isEditing ? "Add New Movie" : "Edit Movie"}</h2>
       <div className="form-group">
         <label htmlFor="movie-title">Movie Title:</label>
         <input
@@ -141,7 +141,7 @@ export default function AdminPanelForm({
       </div>
       <div className="form-group">
         <button type="submit" className="submit-btn add-margin-top">
-          Submit
+          {!isEditing ? "Add Movie" : "Save Changes"}
         </button>
       </div>
     </form>
