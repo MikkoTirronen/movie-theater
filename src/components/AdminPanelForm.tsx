@@ -11,7 +11,7 @@ export default function AdminPanelForm({
 }) {
   const [title, setTitle] = useState<string>("");
   const [price, setPrice] = useState<string>("");
-  const { movies, setMovies } = useMovieContext();
+  const { movies, setMovies, currentMovie, setCurrentMovie } = useMovieContext();
 
   useEffect(() => {
     const movie = movies.find((m) => m.id === editMovieId);
@@ -64,6 +64,9 @@ export default function AdminPanelForm({
       setMovies((prev) =>
         prev.map((movie) => (movie.id === data.id ? data : movie)),
       );
+      if (currentMovie.id === data.id) {
+        setCurrentMovie(data);
+      }
     } catch (err) {
       console.log(err);
       setMovies((prev) =>
