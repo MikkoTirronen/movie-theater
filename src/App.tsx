@@ -8,7 +8,7 @@ import BookingForm from "./components/BookingForm";
 import AdminPanel from "./components/AdminPanel";
 
 function App() {
-  const { setMovies } = useMovieContext();
+  const { setMovies, setCurrentMovie } = useMovieContext();
   const [adminToggle, setAdminToggle] = useState<boolean>(false);
   const [bookToggle, setBookToggle] = useState<boolean>(false);
   const handleClick = () => {
@@ -20,12 +20,13 @@ function App() {
         const response = await fetch("http://localhost:3000/movies");
         const data = await response.json();
         setMovies(data);
+        setCurrentMovie(data[0]);
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
     };
     fetchMovies();
-  }, [setMovies]);
+  }, [setMovies, setCurrentMovie]);
 
   return (
     <>
